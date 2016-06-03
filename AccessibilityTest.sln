@@ -1,0 +1,41 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.24720.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestFramework", "TestFramework\TestFramework.csproj", "{6066389A-448B-43B9-A85F-64DEE8A5CA43}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "Tests\Tests.csproj", "{A49ED0D7-3021-42EE-9B9D-E5BA55577784}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Deploy-Dev|Any CPU = Deploy-Dev|Any CPU
+		Deploy-Release|Any CPU = Deploy-Release|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6066389A-448B-43B9-A85F-64DEE8A5CA43}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6066389A-448B-43B9-A85F-64DEE8A5CA43}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6066389A-448B-43B9-A85F-64DEE8A5CA43}.Deploy-Dev|Any CPU.ActiveCfg = Debug|Any CPU
+		{6066389A-448B-43B9-A85F-64DEE8A5CA43}.Deploy-Dev|Any CPU.Build.0 = Debug|Any CPU
+		{6066389A-448B-43B9-A85F-64DEE8A5CA43}.Deploy-Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6066389A-448B-43B9-A85F-64DEE8A5CA43}.Deploy-Release|Any CPU.Build.0 = Release|Any CPU
+		{6066389A-448B-43B9-A85F-64DEE8A5CA43}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6066389A-448B-43B9-A85F-64DEE8A5CA43}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A49ED0D7-3021-42EE-9B9D-E5BA55577784}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A49ED0D7-3021-42EE-9B9D-E5BA55577784}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A49ED0D7-3021-42EE-9B9D-E5BA55577784}.Deploy-Dev|Any CPU.ActiveCfg = Debug|Any CPU
+		{A49ED0D7-3021-42EE-9B9D-E5BA55577784}.Deploy-Dev|Any CPU.Build.0 = Debug|Any CPU
+		{A49ED0D7-3021-42EE-9B9D-E5BA55577784}.Deploy-Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A49ED0D7-3021-42EE-9B9D-E5BA55577784}.Deploy-Release|Any CPU.Build.0 = Release|Any CPU
+		{A49ED0D7-3021-42EE-9B9D-E5BA55577784}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A49ED0D7-3021-42EE-9B9D-E5BA55577784}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		EnterpriseLibraryConfigurationToolBinariesPath = packages\EnterpriseLibrary.Common.5.0.505.0\lib\NET35;packages\Unity.Interception.2.1.505.0\lib\NET35;packages\Unity.2.1.505.0\lib\NET35;packages\Unity.2.1.505.2\lib\NET35
+	EndGlobalSection
+EndGlobal
