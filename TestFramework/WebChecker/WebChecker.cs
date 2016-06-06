@@ -60,10 +60,13 @@ namespace TestFramework.WebChecker
         {
             string errorSource = string.Empty;
             CrawledPage crawledPage = base.CrawlThePage(pageToCrawl);
-            CheckThePage(crawledPage.Uri.AbsoluteUri, crawledPage.HtmlDocument, out errorSource);
-            if (errorSource != string.Empty)
+            if (crawledPage.ToString().EndsWith("[200]"))
             {
-                errorInfo += errorSource;
+                CheckThePage(crawledPage.Uri.AbsoluteUri, crawledPage.HtmlDocument, out errorSource);
+                if (errorSource != string.Empty)
+                {
+                    errorInfo += errorSource;
+                }
             }
 
             return crawledPage;

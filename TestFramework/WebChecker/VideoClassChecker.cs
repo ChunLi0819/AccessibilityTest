@@ -69,10 +69,13 @@ namespace TestFramework.WebChecker
                 if (errorSource != string.Empty)
                 {
                     _logger.InfoFormat("The following resources have video class issue on url {0}\r\n{1}", uri, errorSource.Substring(0, errorSource.Length - 1));
+                    errorSource = string.Format("The following resources have video class issue on url {0}\r\n{1}\r\n", uri, errorSource.Substring(0, errorSource.Length - 1));
                 }
             }
-            catch (Exception)
+            catch (Exception e)
             {
+                _logger.InfoFormat("Exception is thrown when checking video class issue on url {0} with message {1}", uri, e.Message);
+                errorSource = string.Format("Exception is thrown when checking video class issue on url {0} with message {1}\r\n", uri, e.Message);
             }
         }
     }
