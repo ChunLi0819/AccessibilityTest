@@ -648,7 +648,7 @@ namespace TestFramework.Abot.Crawler
         {
             try
             {
-                if (pageToCrawl == null || !pageToCrawl.Uri.AbsoluteUri.StartsWith(_crawlContext.RootUri.AbsoluteUri.Substring(0, _crawlContext.RootUri.AbsoluteUri.LastIndexOf("/"))))
+                if (pageToCrawl == null)
                     return;
 
                 ThrowIfCancellationRequested();
@@ -689,12 +689,16 @@ namespace TestFramework.Abot.Crawler
                         crawledPage.IsRetry = true;
                         _scheduler.Add(crawledPage);
                     }
+
+                    if (IsRedirect(crawledPage) && _crawlContext.CrawlConfiguration.IsHttpRequestAutoRedirectsEnabled)
+                    {
+                        _scheduler.AddKnownUri(crawledPage.HttpWebResponse.ResponseUri);
+                    }
                 }
                 else if (IsRedirect(crawledPage) && !_crawlContext.CrawlConfiguration.IsHttpRequestAutoRedirectsEnabled)
                 {
                     ProcessRedirect(crawledPage);
                 }
-
             }
             catch (OperationCanceledException oce)
             {

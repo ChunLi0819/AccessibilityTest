@@ -26,7 +26,7 @@ namespace Tests
         public void Acceptance_S18_TC01_CheckImageAltTextForAllPages()
         {
             bool isSucceed = false;
-            string errorInfo = WebCheckers.ImageAltTxtChecker.ProccessCheck("https://msdn.microsoft.com/en-us/openspecifications");
+            string errorInfo = WebCheckers.ImageAltTxtChecker.ProccessCheck();
             isSucceed = errorInfo == string.Empty;
             Assert.IsTrue(isSucceed, (isSucceed ? "Check alt text of image succeed for all pages." : string.Format("Check alt text of image result:\r\n{0}", errorInfo)));
         }

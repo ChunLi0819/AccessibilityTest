@@ -33,11 +33,18 @@ namespace TestFramework.WebChecker
                 {
                     if (!CheckResourceBlocked(srcNode.Attributes["src"].Value, "Image"))
                     {
-                        if (srcNode.ParentNode.Name == "a")
+                        if (srcNode.Attributes["alt"] == null)
                         {
-                            if (srcNode.ParentNode.Attributes["aria-label"] != null)
+                            if (srcNode.ParentNode.Name == "a")
                             {
-                                if (string.IsNullOrEmpty(srcNode.ParentNode.Attributes["aria-label"].Value))
+                                if (srcNode.ParentNode.Attributes["aria-label"] != null)
+                                {
+                                    if (string.IsNullOrEmpty(srcNode.ParentNode.Attributes["aria-label"].Value))
+                                    {
+                                        errorSource += srcNode.Attributes["src"].Value + ";";
+                                    }
+                                }
+                                else
                                 {
                                     errorSource += srcNode.Attributes["src"].Value + ";";
                                 }
@@ -49,16 +56,26 @@ namespace TestFramework.WebChecker
                         }
                         else
                         {
-                            if (srcNode.Attributes["alt"] != null)
+                            if (string.IsNullOrEmpty(srcNode.Attributes["alt"].Value))
                             {
-                                if (string.IsNullOrEmpty(srcNode.Attributes["alt"].Value))
+                                if (srcNode.ParentNode.Name == "a")
+                                {
+                                    if (srcNode.ParentNode.Attributes["aria-label"] != null)
+                                    {
+                                        if (string.IsNullOrEmpty(srcNode.ParentNode.Attributes["aria-label"].Value))
+                                        {
+                                            errorSource += srcNode.Attributes["src"].Value + ";";
+                                        }
+                                    }
+                                    else
+                                    {
+                                        errorSource += srcNode.Attributes["src"].Value + ";";
+                                    }
+                                }
+                                else
                                 {
                                     errorSource += srcNode.Attributes["src"].Value + ";";
                                 }
-                            }
-                            else
-                            {
-                                errorSource += srcNode.Attributes["src"].Value + ";";
                             }
                         }
                     }
