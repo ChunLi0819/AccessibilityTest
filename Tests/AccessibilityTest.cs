@@ -26,7 +26,7 @@ namespace Tests
         public void Acceptance_S18_TC01_CheckImageAltTextForAllPages()
         {
             bool isSucceed = false;
-            string errorInfo = WebCheckers.ImageAltTxtChecker.ProccessCheck("https://msdn.microsoft.com/en-us/openspecifications");
+            string errorInfo = WebCheckers.ImageAltTextChecker.ProccessCheck();
             isSucceed = errorInfo == string.Empty;
             Assert.IsTrue(isSucceed, (isSucceed ? "Check alt text of image succeed for all pages." : string.Format("Check alt text of image result:\r\n{0}", errorInfo)));
         }
@@ -36,7 +36,7 @@ namespace Tests
         {
             bool isSucceed = false;
             WebCheckers.CrawlConfiguration.MaxCrawlDepth = 0;
-            string errorInfo = WebCheckers.ImageAltTxtChecker.ProccessCheck();
+            string errorInfo = WebCheckers.ImageAltTextChecker.ProccessCheck();
             isSucceed = errorInfo == string.Empty;
             Assert.IsTrue(isSucceed, (isSucceed ? "Check alt text of image succeed for a single page." : string.Format("Check alt text of image result:\r\n{0}", errorInfo)));
         }
@@ -115,6 +115,25 @@ namespace Tests
             string errorInfo = WebCheckers.ImageSrcChecker.ProccessCheck();
             isSucceed = errorInfo == string.Empty;
             Assert.IsTrue(isSucceed, (isSucceed ? "Check image src succeed for a single page." : string.Format("Check image src result:\r\n{0}", errorInfo)));
+        }
+
+        [TestMethod]
+        public void Acceptance_S18_TC11_CheckAriaLabelForAllPages()
+        {
+            bool isSucceed = false;
+            string errorInfo = WebCheckers.AriaLabelChecker.ProccessCheck();
+            isSucceed = errorInfo == string.Empty;
+            Assert.IsTrue(isSucceed, (isSucceed ? "Check aria-label for link which contains image succeed for all pages." : string.Format("Check aria-label for link which contains image result:\r\n{0}", errorInfo)));
+        }
+
+        [TestMethod]
+        public void Acceptance_S18_TC12_CheckAriaLabelForSinglePage()
+        {
+            bool isSucceed = false;
+            WebCheckers.CrawlConfiguration.MaxCrawlDepth = 0;
+            string errorInfo = WebCheckers.AriaLabelChecker.ProccessCheck();
+            isSucceed = errorInfo == string.Empty;
+            Assert.IsTrue(isSucceed, (isSucceed ? "Check aria-label for link which contains image succeed for a single page." : string.Format("Check aria-label for link which contains image result:\r\n{0}", errorInfo)));
         }
     }
 }

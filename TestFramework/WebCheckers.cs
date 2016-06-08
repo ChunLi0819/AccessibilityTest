@@ -49,11 +49,11 @@ namespace TestFramework
             }
         }
 
-        public static ImageAltTxtChecker ImageAltTxtChecker
+        public static ImageAltTextChecker ImageAltTextChecker
         {
             get
             {
-                return new ImageAltTxtChecker(_config);
+                return new ImageAltTextChecker(_config);
             }
         }
 
@@ -86,6 +86,14 @@ namespace TestFramework
             get
             {
                 return new ImageSrcChecker(_config);
+            }
+        }
+
+        public static AriaLabelChecker AriaLabelChecker
+        {
+            get
+            {
+                return new AriaLabelChecker(_config);
             }
         }
 
