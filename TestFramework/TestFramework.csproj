@@ -95,8 +95,9 @@
     <Compile Include="Abot\Crawler\PoliteWebCrawler.cs" />
     <Compile Include="Abot\Crawler\WebCrawler.cs" />
     <Compile Include="WebChecker\EmptyLinkChecker.cs" />
+    <Compile Include="WebChecker\AriaLabelChecker.cs" />
     <Compile Include="WebChecker\ImageSrcChecker.cs" />
-    <Compile Include="WebChecker\ImageAltTxtChecker.cs" />
+    <Compile Include="WebChecker\ImageAltTextChecker.cs" />
     <Compile Include="Abot\Poco\CrawlConfiguration.cs" />
     <Compile Include="Abot\Poco\CrawlContext.cs" />
     <Compile Include="Abot\Poco\CrawlDecision.cs" />

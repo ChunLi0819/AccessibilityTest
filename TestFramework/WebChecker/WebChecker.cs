@@ -40,6 +40,7 @@ namespace TestFramework.WebChecker
 
         public string ProccessCheck(string url = null)
         {
+            errorInfo = string.Empty;
             string address = url ?? DefaultAddress;
             Uri uriToCrawl = new Uri(address);
 
