@@ -42,7 +42,12 @@ namespace TestFramework.WebChecker
                                     if (!string.IsNullOrEmpty(srcNode.ParentNode.Attributes["href"].Value) && srcNode.ParentNode.Attributes["href"] != null)
                                         errorSource += srcNode.ParentNode.Attributes["href"].Value + ";";
                                     else
-                                        errorSource += srcNode.Attributes["src"].Value + ";";
+                                    {
+                                        if (!string.IsNullOrEmpty(srcNode.Attributes["src"].Value))
+                                            errorSource += srcNode.Attributes["src"].Value + ";";
+                                        else
+                                            errorSource += srcNode.XPath + ";";
+                                    }
                                 }
                             }
                             else
@@ -50,7 +55,12 @@ namespace TestFramework.WebChecker
                                 if (!string.IsNullOrEmpty(srcNode.ParentNode.Attributes["href"].Value) && srcNode.ParentNode.Attributes["href"] != null)
                                     errorSource += srcNode.ParentNode.Attributes["href"].Value + ";";
                                 else
-                                    errorSource += srcNode.Attributes["src"].Value + ";";
+                                {
+                                    if (!string.IsNullOrEmpty(srcNode.Attributes["src"].Value))
+                                        errorSource += srcNode.Attributes["src"].Value + ";";
+                                    else
+                                        errorSource += srcNode.XPath + ";";
+                                }
                             }
                         }
                     }

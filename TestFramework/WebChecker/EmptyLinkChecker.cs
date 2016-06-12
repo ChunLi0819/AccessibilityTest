@@ -52,14 +52,20 @@ namespace TestFramework.WebChecker
 
                         if (!hasChildNotEmpty && string.IsNullOrEmpty(srcNode.InnerText))
                         {
-                            errorSource += srcNode.Attributes["href"].Value + ";";
+                            if (!string.IsNullOrEmpty(srcNode.Attributes["href"].Value))
+                                errorSource += srcNode.Attributes["href"].Value + ";";
+                            else
+                                errorSource += srcNode.XPath + ";";
                         }
                     }
                     else
                     {
                         if (string.IsNullOrEmpty(srcNode.InnerText))
                         {
-                            errorSource += srcNode.Attributes["href"].Value + ";";
+                            if (!string.IsNullOrEmpty(srcNode.Attributes["href"].Value))
+                                errorSource += srcNode.Attributes["href"].Value + ";";
+                            else
+                                errorSource += srcNode.XPath + ";";
                         }
                     }
                 }

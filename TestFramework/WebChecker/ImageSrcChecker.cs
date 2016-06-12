@@ -48,12 +48,12 @@ namespace TestFramework.WebChecker
                         }
                         else
                         {
-                            errorSource += srcNode.Attributes["alt"].Value + ";";
+                            errorSource += srcNode.XPath + ";";
                         }
                     }
                     else
                     {
-                        errorSource += srcNode.Attributes["alt"].Value + ";";
+                        errorSource += srcNode.XPath + ";";
                     }
                 }
 

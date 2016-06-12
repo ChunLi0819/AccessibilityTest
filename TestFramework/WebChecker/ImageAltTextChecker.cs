@@ -35,13 +35,19 @@ namespace TestFramework.WebChecker
                     {
                         if (srcNode.Attributes["alt"] == null)
                         {
-                            errorSource += srcNode.Attributes["src"].Value + ";";
+                            if (!string.IsNullOrEmpty(srcNode.Attributes["src"].Value))
+                                errorSource += srcNode.Attributes["src"].Value + ";";
+                            else
+                                errorSource += srcNode.XPath + ";";
                         }
                         else
                         {
                             if (string.IsNullOrEmpty(srcNode.Attributes["alt"].Value))
                             {
-                                errorSource += srcNode.Attributes["src"].Value + ";";
+                                if (!string.IsNullOrEmpty(srcNode.Attributes["src"].Value))
+                                    errorSource += srcNode.Attributes["src"].Value + ";";
+                                else
+                                    errorSource += srcNode.XPath + ";";
                             }
                         }
                     }
