@@ -30,36 +30,46 @@ namespace TestFramework.WebChecker
             {
                 foreach (var srcNode in htmlDocument.DocumentNode.SelectNodes("//a/@href"))
                 {
-                    if (srcNode.HasChildNodes)
+                    if (srcNode.Attributes["href"].Value != "#" || (srcNode.Attributes["title"] != null && srcNode.Attributes["title"].Value != "Email")
+                        && (srcNode.Attributes["class"] != null && srcNode.Attributes["class"].Value != "icon_envelope share-email"))
                     {
-                        bool hasChildNotEmpty = false;
-                        foreach (var node in srcNode.ChildNodes)
+                        if (srcNode.HasChildNodes)
                         {
-                            if(node.Name == "span" || node.Name == "svg" || node.Name == "div" || node.Name == "p")
+                            bool hasChildNotEmpty = false;
+                            foreach (var node in srcNode.ChildNodes)
                             {
-                                if (!string.IsNullOrEmpty(node.InnerText))
+                                if (node.Name == "span" || node.Name == "svg" || node.Name == "div" || node.Name == "p")
+                                {
+                                    if (!string.IsNullOrEmpty(node.InnerText))
+                                    {
+                                        hasChildNotEmpty = true;
+                                        break;
+                                    }
+                                }
+                                else if (node.Name == "img")
                                 {
                                     hasChildNotEmpty = true;
                                     break;
                                 }
                             }
-                            else if (node.Name == "img")
+
+                            if (!hasChildNotEmpty && string.IsNullOrEmpty(srcNode.InnerText))
                             {
-                                hasChildNotEmpty = true;
-                                break;
+                                if (!string.IsNullOrEmpty(srcNode.Attributes["href"].Value))
+                                    errorSource += srcNode.Attributes["href"].Value + ";";
+                                else
+                                    errorSource += srcNode.XPath + ";";
                             }
                         }
-
-                        if (!hasChildNotEmpty && string.IsNullOrEmpty(srcNode.InnerText))
+                        else
                         {
-                            errorSource += srcNode.Attributes["href"].Value + ";";
-                        }
-                    }
-                    else
-                    {
-                        if (string.IsNullOrEmpty(srcNode.InnerText))
-                        {
-                            errorSource += srcNode.Attributes["href"].Value + ";";
+                            if (string.IsNullOrEmpty(srcNode.InnerText))
+                            {
+                                if (!string.IsNullOrEmpty(srcNode.Attributes["href"].Value))
+                                    errorSource += srcNode.Attributes["href"].Value + ";";
+                                else
+                                    errorSource += srcNode.XPath + ";";
+                            }
                         }
                     }
                 }

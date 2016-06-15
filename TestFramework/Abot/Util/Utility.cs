@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Net;
+using System.Xml;
 using TestFramework.Abot.Poco;
 
 namespace TestFramework.Abot.Util
@@ -38,6 +39,28 @@ namespace TestFramework.Abot.Util
             absoluteUrl = relativeUrl.StartsWith("/") ? prefix + other.Substring(0, other.IndexOf("/")) + relativeUrl :
                 prefix + other.Substring(0, other.IndexOf("/") + 1) + relativeUrl;
             return absoluteUrl;
+        }
+
+        public static bool CheckResourceBlocked(string url, string category)
+        {
+            if (!string.IsNullOrEmpty(url) && !string.IsNullOrEmpty(category))
+            {
+                XmlDocument doc = new XmlDocument();
+                doc.Load("Contents\\BlockedResource.xml");
+                XmlNodeList urlItemList = doc.DocumentElement.GetElementsByTagName("Item");
+                foreach (XmlNode node in urlItemList)
+                {
+                    if (category.Equals(((XmlElement)node).GetAttribute("category")))
+                    {
+                        if (url.Equals(((XmlElement)node).GetAttribute("url")))
+                        {
+                            return true;
+                        }
+                    }
+                }
+            }
+
+            return false;
         }
 
         /// <summary>

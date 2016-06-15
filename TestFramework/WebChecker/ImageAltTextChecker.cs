@@ -1,9 +1,8 @@
-﻿using TestFramework.Abot.Core;
+﻿using HtmlAgilityPack;
+using System;
+using TestFramework.Abot.Core;
 using TestFramework.Abot.Poco;
 using TestFramework.Abot.Util;
-using HtmlAgilityPack;
-using System;
-using System.Xml;
 
 namespace TestFramework.WebChecker
 {
@@ -31,17 +30,23 @@ namespace TestFramework.WebChecker
             {
                 foreach (var srcNode in htmlDocument.DocumentNode.SelectNodes("//img/@src"))
                 {
-                    if (!CheckResourceBlocked(srcNode.Attributes["src"].Value, "Image"))
+                    if (!Utility.CheckResourceBlocked(srcNode.Attributes["src"].Value, "Image"))
                     {
                         if (srcNode.Attributes["alt"] == null)
                         {
-                            errorSource += srcNode.Attributes["src"].Value + ";";
+                            if (!string.IsNullOrEmpty(srcNode.Attributes["src"].Value))
+                                errorSource += srcNode.Attributes["src"].Value + ";";
+                            else
+                                errorSource += srcNode.XPath + ";";
                         }
                         else
                         {
                             if (string.IsNullOrEmpty(srcNode.Attributes["alt"].Value))
                             {
-                                errorSource += srcNode.Attributes["src"].Value + ";";
+                                if (!string.IsNullOrEmpty(srcNode.Attributes["src"].Value))
+                                    errorSource += srcNode.Attributes["src"].Value + ";";
+                                else
+                                    errorSource += srcNode.XPath + ";";
                             }
                         }
                     }
@@ -58,25 +63,6 @@ namespace TestFramework.WebChecker
                 _logger.InfoFormat("Exception is thrown when checking alt text of image issue on url {0} with message {1}", uri, e.Message);
                 errorSource = string.Format("Exception is thrown when checking alt text of image issue on url {0} with message {1}\r\n", uri, e.Message);
             }
-        }
-
-        private bool CheckResourceBlocked(string url, string category)
-        {
-            XmlDocument doc = new XmlDocument();
-            doc.Load("Contents\\BlockedResource.xml");
-            XmlNodeList urlItemList = doc.DocumentElement.GetElementsByTagName("Item");
-            foreach (XmlNode node in urlItemList)
-            {
-                if (category.Equals(((XmlElement)node).GetAttribute("category")))
-                {
-                    if (url.Equals(((XmlElement)node).GetAttribute("url")))
-                    {
-                        return true;
-                    }
-                }
-            }
-
-            return false;
         }
     }
 }
