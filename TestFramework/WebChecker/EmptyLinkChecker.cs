@@ -30,7 +30,8 @@ namespace TestFramework.WebChecker
             {
                 foreach (var srcNode in htmlDocument.DocumentNode.SelectNodes("//a/@href"))
                 {
-                    if (!Utility.CheckResourceBlocked(srcNode.Attributes["href"].Value, "Link"))
+                    if (srcNode.Attributes["href"].Value != "#" || (srcNode.Attributes["title"] != null && srcNode.Attributes["title"].Value != "Email")
+                        && (srcNode.Attributes["class"] != null && srcNode.Attributes["class"].Value != "icon_envelope share-email"))
                     {
                         if (srcNode.HasChildNodes)
                         {
